@@ -33,6 +33,6 @@ func HttpPost(URI string, postBody string) (*resty.Response, error) {
    fmt.Println("Printing only session key out: ", session_key.Key)
    //fmt.Println("Printing only session key struct out: ", session_key)
 
-   return session_key, nil
+   return resp, nil
 
 }
