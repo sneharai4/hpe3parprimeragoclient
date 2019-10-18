@@ -1,6 +1,7 @@
 package hpe3parprimeragoclient
 
 import "github.com/go-resty/resty/v2"
+import "encoding/json"
 import "crypto/tls"
 import "fmt"
 
@@ -28,9 +29,9 @@ func HttpPost(URI string, postBody string) (*resty.Response, error) {
    }
 
    fmt.Println("Response body is", resp.Body())
-   //json.Unmarshal(resp.Body(), &session_key)
-   //fmt.Println("Printing only session key out: ", session_key.Key)
-   //fmt.Println("Printing only session key struct out: ", session_key)
+   json.Unmarshal(resp.Body(), &session_key)
+   fmt.Println("Printing only session key out: ", session_key.Key)
+   fmt.Println("Printing only session key struct out: ", session_key)
 
    return  resp, nil
 
