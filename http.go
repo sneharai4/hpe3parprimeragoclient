@@ -5,11 +5,12 @@ import "crypto/tls"
 import "fmt"
 
 type AuthSuccess struct {
-        /* variables */
+   Key string `json:"key"`
 }
 
+var session_key AuthSuccess
 
-func HttpPost(URI string, postBody string) (*resty.Response,error) {
+func HttpPost(URI string, postBody string) (*resty.Response, error) {
 
    client := resty.New()
 
@@ -25,7 +26,10 @@ func HttpPost(URI string, postBody string) (*resty.Response,error) {
    if err != nil {
       return nil, err
    }
+
+   fmt.Println("Response body is", resp.Body())
+   json.Unmarshal(resp.Body(), &session_key)
+   fmt.Println("Printing only session key out: ", session_key.Key)
+   fmt.Println("Printing only session key struct out: ", session_key)
+
    return  resp, nil
-
-}
-
